@@ -4,8 +4,9 @@
 The repository houses:
 * 'datasets' folder that is populated with stock data the first time script is run. To repopulate data:
   ```bash
-  python get_data.py
+  python get_data.py [quandl_symbol]
   ```
+  Note: For a list of Quandl WIKI symbols, refer this.
 * 'research-papers' folder - the papers referred during the development of the model.
 
 ## Running for the first time?
@@ -29,8 +30,4 @@ The repository houses:
       ```
 
 ## To-do:
-1. Complete data-preprocessing
-2. Add functions to plot and analyse data before any feature-scaling
-3. Implement functions for feature scaling.
-4. Add features.
-5. Make data ready for input to the model.
+1. Add functions to plot
