@@ -1,37 +1,39 @@
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 def loadDataset(symbol):
-      df = pd.read_csv('datasets/'+symbol+'.csv', parse_dates=['Date'])
-      df.set_index('Date', inplace=True)
-      return df
+    df = pd.read_csv('datasets/'+symbol+'.csv', parse_dates=['Date'])
+    df = df.dropna()
+    df.set_index('Date', inplace=True)
+    return df
 
 def splitDataset(df):
-    length = len(df.iloc[:,0])
-    train_end = round(length * 0.80)
-    test_end = round(length * 0.90)
-    return [
-            df.iloc[: train_end, : ],
-            df.iloc[train_end:test_end, :],
-            df.iloc[test_end: ,:]
-           ]
+    train, test = train_test_split(df, test_size=0.2)
+    train = train.dropna()
+    test = test.dropna()
+    return [train, test]
 
 def addFeatures(df):
-      df['High-Low'] = df['High']-df['Low']
-      df['ReturnOut'] = df['Adj. Close'].shift(-1)
-      df = df.dropna()
-      X = df.loc[:, 'Adj. Open':'High-Low']
-      y = pd.DataFrame(df, columns = ['ReturnOut'])
-      return X, y
+    df['High-Low'] = df['High']-df['Low']
+    df['PCT_change'] = (df['Close'] - df['Open'])/df['Open'] * 100
+    df['WILR'] = (df['High']- df['Close'])/(df['High']- df['Low'])*100
+     
+    df['MAV5'] = (df.loc[:,'Close']).rolling(window =5).mean()
+    df['MAV3'] = (df.loc[:,'Close']).rolling(window =3).mean()
+    
+    df['ReturnOut'] = df['Adj. Close'].shift(-1)
+    df = df.dropna()
+    X = df.loc[:, 'Adj. Close':'MAV3']
+    y = df.loc[:, 'ReturnOut']
+    return [X, y]
 
 def featureScaling(df):
-      train, cv, test = splitDataset(df)
-      scaler = MinMaxScaler()
-      scaler.fit(train)
-      train = scaler.transform(train)
-      cv = scaler.transform(cv)
-      test.dropna(inplace=True)
-      test = scaler.transform(test)
-      print(test)
-      return train, cv, test
+    [train, test] = splitDataset(df)
+    scaler = MinMaxScaler()
+    train.to_csv('train.csv')
+    scaler.fit(train)
+    train = scaler.transform(train)
+    test = scaler.transform(test)
+    return [train, test]
