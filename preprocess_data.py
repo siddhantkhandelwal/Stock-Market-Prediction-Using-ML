@@ -15,7 +15,7 @@ def splitDataset(X, y):
 def addFeatures(df):
     df['High-Low'] = df['High']-df['Low']
     df['PCT_change'] = df['Adj. Close'].pct_change(5)
-    df['MDAV5'] = (df.loc[:,'Close']).rolling(window =5).mean()
+    df['MDAV5'] = (df.loc[:,'Close']).rolling(window=5).mean()
 
     df['ReturnOut'] = df['Adj. Close'].shift(-1)
     df = df.dropna()
