@@ -19,8 +19,9 @@ def addFeatures(df):
 
     df['ReturnOut'] = df['Adj. Close'].shift(-1)
     df = df.dropna()
+    df.loc[:, 'Change'] = df.loc[:, 'ReturnOut'] - df.loc[:, 'Adj. Close'] > 0
     X = df.loc[:, 'Adj. Close':'MDAV5']
-    y = df.loc[:, 'ReturnOut']
+    y = df.loc[:, 'Change']
     return [X, y]
 
 def featureScaling(train, test):
