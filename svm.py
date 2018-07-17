@@ -2,6 +2,14 @@ from sklearn import svm
 import preprocess_data
 
 def train(df):
+    '''This function trains the data on 4 different SVC model kernels:
+    1. Linear Kernel
+    2. Polynomial Kernel
+    3. Radial Basis Function Kernel
+    4. Sigmoid Kernel
+    The hyperparameters are set default in each case.
+    The score of the model on the Dev/Test set is returned to the main script.
+    '''
     X, y = preprocess_data.addFeatures(df)
     X_train, X_test, y_train, y_test = preprocess_data.splitDataset(X, y)
     X_train, X_test = preprocess_data.featureScaling(X_train, X_test)
