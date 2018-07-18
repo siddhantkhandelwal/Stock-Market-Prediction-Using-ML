@@ -1,12 +1,11 @@
-import svm
+import models
 import preprocess_data
 import sys
 
 
 symbols = sys.argv[1:] #loads symbols from the command line.
-for symbol in symbols: #runs the svm models on every symbol.
+for symbol in symbols: #runs the models on every symbol.
     df = preprocess_data.loadDataset(symbol)
-    svm.train(df)
-    scores_svm =  svm.train(df)
-    print(f"Scores of SVC model on the dataset {symbol} (Linear, Poly, RBF, Sigmoid): {[score * 100 for score in scores_svm]}")
+    scores_models =  models.train(df)
+    print(f"Scores of models on the dataset {symbol} (Linear, Poly, RBF, Sigmoid, RFC): {[score * 100 for score in scores_models]}")
 

@@ -1,6 +1,8 @@
 # Stock Market Prediction Using Machine Learning
 As part of the ML SIG Summer Project.
-## Get Data
+
+##Project
+### Get Data
 The Data is obtained from Quandl (restricted to the WIKI table) which requires an API key. The file get_data.py contains the necessary functions.
 
 Usage:
@@ -9,12 +11,22 @@ python get_data.py [symbols]
 ```
 For a list of available symbols for download, see: WIKI-datasets-codes.csv
 
-## Features Used
+### Features Used
 1. High-Low: It is the difference between High and Low prices of a stock for a particular day.
 2. PCT_change: It calculates the percent change shift on 5 days.
 3. MDAV5: It is the Rolling Mean Window calculation for 5 days.
 4. Return Out: Shifts the Adj. Close for stock prices by 1 day.
 
+### Models Used
+1. SVM (SVC)
+   * Linear Kernel
+   * Polynomial Kernel
+   * Radial Basis Functional Kernel
+   * Sigmoid Kernel
+2. Ensemblers
+   * Random Forest Classifier
+
+## Repository
 ### Structure of the repository
 The repository houses:
 * 'datasets' folder that is populated with stock data the first time script is run. To repopulate data:
@@ -45,17 +57,16 @@ The repository houses:
       pip install -r requirements.txt
       ```
 
-### Getting Data
+#### Getting Data
 Though the datasets folder has some symbol stock prices. You can populate with more.
 ```bash
 python get_data.py [symbols]
 ```
 
-### Running the models
+#### Running the models
 You can run the model on a list of symbols supplied as command line arguments.
 ```bash
 python main.py [symbols]
 ```
-For a list of available symbols for download, see: WIKI-datasets-codes.csv
 ## To-do:
 1. Add functions to plot
