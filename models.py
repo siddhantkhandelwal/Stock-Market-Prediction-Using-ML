@@ -1,6 +1,8 @@
 from sklearn import svm
 import preprocess_data
 from sklearn.ensemble import RandomForestClassifier as rfc
+from sklearn.ensemble import AdaBoostClassifier as abc
+from sklearn.ensemble import VotingClassifier
 
 
 def train(df):
@@ -38,4 +40,12 @@ def train(df):
     model_rfc.fit(X_train, y_train)
     score_rfc = model_rfc.score(X_test, y_test)
 
-    return score_slinear, score_spoly, score_srbf, score_ssig, score_rfc
+    model_abc = abc(n_estimators=500)
+    model_abc.fit(X_train, y_train)
+    score_abc = model_abc.score(X_test, y_test) 
+
+    model_vc = VotingClassifier(estimators=[('svc', model_srbf,), ('rf', model_rfc)], voting='hard')
+    model_vc.fit(X_train, y_train)
+    score_vc = model_vc.score(X_test, y_test)
+
+    return score_slinear, score_spoly, score_srbf, score_ssig, score_rfc, score_abc,  score_vc
