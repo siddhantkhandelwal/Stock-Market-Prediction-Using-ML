@@ -1,7 +1,7 @@
 # Stock Market Prediction Using Machine Learning
 As part of the ML SIG Summer Project.
 
-##Project
+## Project
 ### Get Data
 The Data is obtained from Quandl (restricted to the WIKI table) which requires an API key. The file get_data.py contains the necessary functions.
 
@@ -15,7 +15,9 @@ For a list of available symbols for download, see: WIKI-datasets-codes.csv
 1. High-Low: It is the difference between High and Low prices of a stock for a particular day.
 2. PCT_change: It calculates the percent change shift on 5 days.
 3. MDAV5: It is the Rolling Mean Window calculation for 5 days.
-4. Return Out: Shifts the Adj. Close for stock prices by 1 day.
+4. EMA5: Exponential Moving Average for 5 days.
+5. MACD/MACD_SignalLine: Moving Average Convergence/Divergence Oscillator. Difference between EMA26 - EMA12.
+6. Return Out: Shifts the Adj. Close for stock prices by 1 day.
 
 ### Models Used
 1. SVM (SVC)

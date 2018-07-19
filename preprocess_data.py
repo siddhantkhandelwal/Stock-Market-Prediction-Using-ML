@@ -23,7 +23,9 @@ def addFeatures(df):
     1. High-Low: It is the difference between High and Low prices of a stock for a particular day.
     2. PCT_change: It calculates the percent change shift on 5 days.
     3. MDAV5: It is the Rolling Mean Window calculation for 5 days.
-    4. Return Out: Shifts the Adj. Close for stock prices by 1 day.
+    4. EMA5: Exponential Moving Average for 5 days.
+    5. MACD/MACD_SignalLine: Moving Average Convergence/Divergence Oscillator. Difference between EMA26 - EMA12
+    6.Return Out: Shifts the Adj. Close for stock prices by 1 day.
 
     Change: It is the difference between the ReturnOut and Adj. Close for a day.
             Indicates the rise/fall of the stock price for a day wrt the previous day.
@@ -31,11 +33,16 @@ def addFeatures(df):
     df['High-Low'] = df['High']-df['Low']
     df['PCT_change'] = df['Adj. Close'].pct_change(5)
     df['MDAV5'] = (df.loc[:,'Close']).rolling(window=5).mean()
-
+    df['EMA5'] = (df.loc[:, 'Close']).ewm(ignore_na=False, min_periods=5, com=5, adjust=True).mean()
+    df['EMA26'] = (df.loc[:, 'Close']).ewm(ignore_na=False, min_periods=26, com=26, adjust=True).mean()
+    df['EMA12'] = (df.loc[:, 'Close']).ewm(ignore_na=False, min_periods=12, com=12, adjust=True).mean()
+    df['MACD'] = df['EMA26'] - df['EMA12']
+    df['MACD_SignalLine'] = (df.loc[:, 'MACD']).ewm(ignore_na=False, min_periods=0, com=9, adjust=True).mean()
+    df = df.drop(['EMA26', 'EMA12'], axis=1)
     df['ReturnOut'] = df['Adj. Close'].shift(-1)
     df = df.dropna()
     df.loc[:, 'Change'] = df.loc[:, 'ReturnOut'] - df.loc[:, 'Adj. Close'] > 0
-    X = df.loc[:, 'Adj. Close':'MDAV5']
+    X = df.loc[:, 'Adj. Close':'MACD_SignalLine']
     y = df.loc[:, 'Change']
     return [X, y]
 
