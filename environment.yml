@@ -4,15 +4,12 @@ channels:
   - defaults
 dependencies:
   - asn1crypto=0.24.0=py36_0
-  - ca-certificates=2018.03.07=0
-  - certifi=2018.4.16=py36_0
   - cffi=1.11.5=py36h9745a5d_0
   - chardet=3.0.4=py36h0f667ec_1
   - cryptography=2.2.2=py36h14c3975_0
   - idna=2.7=py36_0
   - libxslt=1.1.32=h1312cb7_0
   - lxml=4.2.2=py36hf71bdeb_0
-  - openssl=1.0.2o=h20670df_0
   - pandas-datareader=0.6.0=py36_0
   - pycparser=2.18=py36hf9f622e_1
   - pyopenssl=18.0.0=py36_0
@@ -23,6 +20,8 @@ dependencies:
   - urllib3=1.23=py36_0
   - wrapt=1.10.11=py36h28b7045_0
   - blas=1.0=mkl
+  - ca-certificates=2018.03.07=0
+  - certifi=2018.4.16=py36_0
   - cycler=0.10.0=py36h93f1223_0
   - dbus=1.13.2=h714fa37_1
   - expat=2.2.5=he0dffb1_0
@@ -32,6 +31,7 @@ dependencies:
   - gst-plugins-base=1.14.0=hbbd80ab_1
   - gstreamer=1.14.0=hb453b48_1
   - icu=58.2=h9c2bf20_1
+  - inflection=0.3.1=py36_0
   - intel-openmp=2018.0.3=0
   - jpeg=9b=h024ee3a_2
   - kiwisolver=1.0.1=py36h764f252_0
@@ -47,9 +47,11 @@ dependencies:
   - mkl=2018.0.3=1
   - mkl_fft=1.0.1=py36h3010b51_0
   - mkl_random=1.0.1=py36h629b387_0
+  - more-itertools=4.2.0=py36_0
   - ncurses=6.1=hf484d3e_0
   - numpy=1.14.5=py36hcd700cb_3
   - numpy-base=1.14.5=py36hdbf6ddf_3
+  - openssl=1.0.2o=h20670df_0
   - pandas=0.23.1=py36h637b7d7_0
   - pcre=8.42=h439df22_0
   - pip=10.0.1=py36_0
@@ -59,6 +61,7 @@ dependencies:
   - python-dateutil=2.7.3=py36_0
   - pytz=2018.5=py36_0
   - qt=5.9.5=h7e424d6_0
+  - quandl=3.3.0=py36_0
   - readline=7.0=ha6073c6_4
   - scikit-learn=0.19.1=py36h7aa7ec6_0
   - scipy=1.1.0=py36hfc37229_0
@@ -71,5 +74,4 @@ dependencies:
   - wheel=0.31.1=py36_0
   - xz=5.2.4=h14c3975_4
   - zlib=1.2.11=ha838bed_2
-prefix: /home/charliebrown/anaconda3/envs/ml-stock-prediction
 

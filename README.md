@@ -70,5 +70,3 @@ You can run the model on a list of symbols supplied as command line arguments.
 ```bash
 python main.py [symbols]
 ```
-## To-do:
-1. Add functions to plot

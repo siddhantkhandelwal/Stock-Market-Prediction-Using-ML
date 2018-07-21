@@ -2,12 +2,13 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 from sklearn.model_selection import train_test_split
-
+import plot
 
 def loadDataset(symbol):
     '''Loads Dataset of the passed symbol from the datasets folder.'''
     df = pd.read_csv('datasets/'+symbol+'.csv', parse_dates=['Date'])
     df = df.set_index('Date') #sets index of the dataframe as the Date column instead of ordinal numbering.
+    #plot.dataset_plot(df, symbol)
     return df
 
 def splitDataset(X, y):
@@ -39,6 +40,7 @@ def addFeatures(df):
     df['MACD'] = df['EMA26'] - df['EMA12']
     df['MACD_SignalLine'] = (df.loc[:, 'MACD']).ewm(ignore_na=False, min_periods=0, com=9, adjust=True).mean()
     df = df.drop(['EMA26', 'EMA12'], axis=1)
+    plot.feature_plot(df)
     df['ReturnOut'] = df['Adj. Close'].shift(-1)
     df = df.dropna()
     df.loc[:, 'Change'] = df.loc[:, 'ReturnOut'] - df.loc[:, 'Adj. Close'] > 0

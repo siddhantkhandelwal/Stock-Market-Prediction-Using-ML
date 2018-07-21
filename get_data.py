@@ -8,12 +8,12 @@ import sys
 quandl.ApiConfig.api_key = 'SLH4M7i2DCfVc7Npr_zV'
 
 def get_data_from_quandl(symbol, start_date, end_date):
-	'''Gets daily stock data from Quandl in ascending order.
-	Takes the symbols of the required stock as command line arguments.
-	The start date is set to 2002-01-01
-	The end date is taken from the current date and time of the system.
-	The data is returned in pandas dataframe, stored in csv format in a folder 'datasets' in the cwd.
-	'''
+    '''Gets daily stock data from Quandl in ascending order.
+    Takes the symbols of the required stock as command line arguments.
+    The start date is set to 2002-01-01
+    The end date is taken from the current date and time of the system.
+    The data is returned in pandas dataframe, stored in csv format in a folder 'datasets' in the cwd.
+    '''
     file_name = symbol + '.csv'
     data = quandl.get("WIKI/"+symbol,
     returns='pandas',
