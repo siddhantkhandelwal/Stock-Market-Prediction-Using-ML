@@ -25,8 +25,10 @@ For a list of available symbols for download, see: WIKI-datasets-codes.csv
    * Polynomial Kernel
    * Radial Basis Functional Kernel
    * Sigmoid Kernel
+   For reading: [refer this](http://scikit-learn.org/stable/modules/svm.html)
 2. Ensemblers
    * Random Forest Classifier
+   For reading: [refer this](http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html)
 
 ## Repository
 ### Structure of the repository
